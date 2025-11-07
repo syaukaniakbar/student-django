@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Konfirmasi Hapus Mahasiswa{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Konfirmasi Hapus Mahasiswa</h2>
+    <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Kembali</a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="alert alert-warning">
+            <h4 class="alert-heading">Peringatan!</h4>
+            <p>Anda yakin ingin menghapus mahasiswa berikut?</p>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>NIM:</strong> {{ object.nim }}</p>
+                    <p><strong>Nama Lengkap:</strong> {{ object.nama_lengkap }}</p>
+                    <p><strong>Email:</strong> {{ object.email }}</p>
+                    <p><strong>Jurusan:</strong> {{ object.jurusan }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Fakultas:</strong> {{ object.fakultas }}</p>
+                    <p><strong>Angkatan:</strong> {{ object.angkatan }}</p>
+                    <p><strong>Status:</strong> {{ object.status }}</p>
+                    <p><strong>No. Telepon:</strong> {{ object.no_telepon }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            <p class="text-danger">Tindakan ini tidak dapat dibatalkan. Data yang dihapus tidak dapat dipulihkan.</p>
+            <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+            <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Batal</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard Mahasiswa{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Welcome -->
+            <h2 class="mb-3">Selamat Datang, {{ user.first_name|default:user.username }}!</h2>
+            <p class="text-muted">Ini adalah dashboard pribadi Anda sebagai mahasiswa.</p>
+
+            {% if user.mahasiswa %}
+            <!-- Profil Mahasiswa Card -->
+            <div class="card shadow-sm rounded-3 mb-5">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Profil Mahasiswa</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>NIM</th>
+                                <td>{{ user.mahasiswa.nim }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nama Lengkap</th>
+                                <td>{{ user.mahasiswa.nama_lengkap }}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td>{{ user.mahasiswa.email }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tanggal Lahir</th>
+                                <td>{{ user.mahasiswa.tanggal_lahir }}</td>
+                            </tr>
+                            <tr>
+                                <th>Jenis Kelamin</th>
+                                <td>
+                                    {% if user.mahasiswa.jenis_kelamin == 'L' %}Laki-laki{% else %}Perempuan{% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Program Studi</th>
+                                <td>{{ user.mahasiswa.jurusan }}</td>
+                            </tr>
+                            <tr>
+                                <th>Fakultas</th>
+                                <td>{{ user.mahasiswa.fakultas }}</td>
+                            </tr>
+                            <tr>
+                                <th>Angkatan</th>
+                                <td>{{ user.mahasiswa.angkatan }}</td>
+                            </tr>
+                            <tr>
+                                <th>IPK</th>
+                                <td>{{ user.mahasiswa.ipk }}</td>
+                            </tr>
+                            <tr>
+                                <th>SKS Lulus</th>
+                                <td>{{ user.mahasiswa.sks_lulus }}</td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>{{ user.mahasiswa.status }}</td>
+                            </tr>
+                            <tr>
+                                <th>Alamat</th>
+                                <td>{{ user.mahasiswa.alamat }}</td>
+                            </tr>
+                            <tr>
+                                <th>Kota</th>
+                                <td>{{ user.mahasiswa.kota }}</td>
+                            </tr>
+                            <tr>
+                                <th>Provinsi</th>
+                                <td>{{ user.mahasiswa.provinsi }}</td>
+                            </tr>
+                            <tr>
+                                <th>No. Telepon</th>
+                                <td>{{ user.mahasiswa.no_telepon }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nama Wali</th>
+                                <td>{{ user.mahasiswa.nama_wali }}</td>
+                            </tr>
+                            <tr>
+                                <th>No. Telepon Wali</th>
+                                <td>{{ user.mahasiswa.no_telepon_wali }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% else %}
+            <div class="alert alert-warning">Data profil mahasiswa belum tersedia.</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

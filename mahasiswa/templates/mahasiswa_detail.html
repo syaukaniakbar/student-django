@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block title %}Detail Mahasiswa{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Detail Mahasiswa</h2>
+    <div>
+        <a href="{% url 'mahasiswa_update' object.pk %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Kembali</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="mb-0">{{ object.nim }} - {{ object.nama_lengkap }}</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Informasi Umum</h5>
+                <table class="table table-borderless">
+                    <tr>
+                        <td><strong>NIM:</strong></td>
+                        <td>{{ object.nim }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nama Lengkap:</strong></td>
+                        <td>{{ object.nama_lengkap }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email:</strong></td>
+                        <td>{{ object.email }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tanggal Lahir:</strong></td>
+                        <td>{{ object.tanggal_lahir }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Jenis Kelamin:</strong></td>
+                        <td>
+                            {% if object.jenis_kelamin == 'L' %}Laki-laki{% else %}Perempuan{% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>No. Telepon:</strong></td>
+                        <td>{{ object.no_telepon }}</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="col-md-6">
+                <h5>Informasi Akademik</h5>
+                <table class="table table-borderless">
+                    <tr>
+                        <td><strong>Fakultas:</strong></td>
+                        <td>{{ object.fakultas }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Jurusan:</strong></td>
+                        <td>{{ object.jurusan }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Angkatan:</strong></td>
+                        <td>{{ object.angkatan }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IPK:</strong></td>
+                        <td>{{ object.ipk }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SKS Lulus:</strong></td>
+                        <td>{{ object.sks_lulus }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Status:</strong></td>
+                        <td>
+                            <span class="badge 
+                                {% if object.status == 'Aktif' %}bg-success
+                                {% elif object.status == 'Lulus' %}bg-info
+                                {% elif object.status == 'Cuti' %}bg-warning
+                                {% elif object.status == 'Drop Out' %}bg-danger
+                                {% endif %}">
+                                {{ object.status }}
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <h5>Alamat & Kontak Wali</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-borderless">
+                    <tr>
+                        <td><strong>Alamat:</strong></td>
+                        <td>{{ object.alamat }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kota:</strong></td>
+                        <td>{{ object.kota }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Provinsi:</strong></td>
+                        <td>{{ object.provinsi }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-borderless">
+                    <tr>
+                        <td><strong>Nama Wali:</strong></td>
+                        <td>{{ object.nama_wali }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>No. Telepon Wali:</strong></td>
+                        <td>{{ object.no_telepon_wali }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
